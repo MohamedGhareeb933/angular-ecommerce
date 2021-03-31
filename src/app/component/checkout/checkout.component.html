@@ -1,0 +1,29 @@
+<div class="container">
+    <div style="margin-top: 10%;">
+        <form [formGroup]="formGroup" (ngSubmit)="onsubmit(formGroup)">
+
+            <div formGroupName="customer">
+                <label>
+                    <h1> Customer </h1>
+                </label>
+
+                <div>
+                    <label> First Name : </label>
+                    <input formControlName="firstname" placeholder="First Name">
+                </div>
+
+                <div>
+                    <label> Last Name :</label>
+                    <input formControlName="lastName" placeholder="Last Name">
+                </div>
+
+                <div>
+                    <label> Email :</label>
+                    <input formControlName="email" placeholder="Email">
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
