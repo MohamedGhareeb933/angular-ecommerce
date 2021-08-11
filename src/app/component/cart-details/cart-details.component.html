@@ -1,0 +1,87 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+
+      <div *ngIf="cartItems.length <= 0; else elseBlock">
+        <p class="alert alert-warning col-md-12" role="alert"> Cart is Empty </p>
+        <button type="button" routerLink="/products" class="btn btn-primary"> back to product</button>
+      </div>
+
+      <ng-template #elseBlock>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 20%;">Image</th>
+              <th scope="col" style="width: 50%;">name</th>
+              <th scope="col" style="width: 30%;">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let index of cartItems">
+              <td>
+                <img src="{{index.imageUrl}}" class="img-responsive" />
+              </td>
+
+              <td>
+                <p> {{index.name}} </p>
+                <p> {{index.unitPrice | currency : "USD"}} </p>
+              </td>
+
+              <td>
+
+                <div class="items">
+                  <label> Quantity : </label>
+
+                  <div class="row no-gutters">
+
+                    <div class="col">
+                      <button (click)="decrement(index)" class="btn btn-primary btn-sm">
+                        <i class="fas fa-minus"> </i>
+                      </button>
+                    </div>
+
+                    <div class="col ml-4 mr-4">
+                      {{index.quatity}}
+                    </div>
+
+                    <div class="col">
+                      <button (click)="increment(index)" class="btn btn-primary btn-sm">
+                        <i class="fa fa-plus"> </i>
+                      </button>
+                    </div>
+
+
+                    <div class="col">
+                      <button (click)="remove(index)" class="btn btn-primary mr-1"> remove </button>
+                    </div>
+
+                    <div class="col-8"> </div>
+                  </div>
+                </div>
+
+                <p class="mt-2"> subtotal : {{index.quatity * index.unitPrice | currency: "USD"}} </p>
+              </td>
+              <hr>
+            </tr>
+
+            <tr>
+              <td colspan="2"></td>
+              <td style="font-weight: bold;">
+
+                <p>total Quantity: {{cartTotalQuantity}} </p>
+                <p>total Price : {{cartTotalPrice | currency:"USD"}} </p>
+                <button type="button" routerLink="/checkout" class="btn btn-primary"> Checkout </button>
+
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </ng-template>
+
+    </div>
+  </div>
+</div>
