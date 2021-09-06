@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './component/product-list/product-list.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,13 +15,12 @@ import { CartDetailsComponent } from './component/cart-details/cart-details.comp
 import { CartService } from './services/cart.service';
 import { CheckoutComponent } from './component/checkout/checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { routes, config } from "./common/Routes";
+import { oktaConfig, routes } from "./common/Routes";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { OKTA_CONFIG, OktaAuthModule, } from '@okta/okta-angular';
 import { LoginComponent } from './component/login/login.component';
-
 
 @NgModule({
   declarations: [
@@ -48,7 +46,8 @@ import { LoginComponent } from './component/login/login.component';
     FormsModule,
     OktaAuthModule
   ],
-  providers: [{ provide: OKTA_CONFIG, useValue: config }, ProductService, ProductCategoryService, CartService], // inject service into other parts of the application.
+  providers: [{ provide: OKTA_CONFIG, useValue: oktaConfig },
+    ProductService, ProductCategoryService, CartService], // inject service into other parts of the application.
   bootstrap: [AppComponent]
 })
 export class AppModule { }

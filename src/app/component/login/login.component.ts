@@ -12,11 +12,17 @@ export class LoginComponent implements OnInit {
 
   constructor(private oktaAuth: OktaAuthService) {
     this.oktaAuth.$authenticationState.subscribe(
-      (isAuthenticazted : boolean) => this.isAuthenticazted = this.isAuthenticazted
+      (isAuthenticazted : boolean) => this.isAuthenticazted = isAuthenticazted
     )
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.isAuthenticazted = await this.oktaAuth.isAuthenticated();
   }
 
+  login() {
+    this.oktaAuth.signInWithRedirect({
+      originalUri: '/products'
+    })
+  }
 }
